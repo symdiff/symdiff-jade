@@ -1,11 +1,19 @@
 {
   "name": "symdiff-jade",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Extracts classes from a Jade template.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/symdiff/symdiff-jade.git"
+  },
+  "bugs": {
+    "url": "https://github.com/symdiff/symdiff-jade/issues"
+  },
+  "homepage": "https://symdiff.github.io",
   "dependencies": {
     "jade": "1.9.2",
-    "symdiff-html": "0.0.1"
+    "symdiff-html": "0.0.2"
   },
   "devDependencies": {
     "chai": "2.3.0",
@@ -17,5 +25,5 @@
     "test": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "author": "Nikolaus Piccolotto <hello@npiccolotto.com>",
-  "license": "MIT"
+  "license": "Apache 2.0"
 }
