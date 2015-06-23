@@ -29,4 +29,10 @@ describe('symdiff-jade', function() {
 
         expect(result.length).to.equal(0);
     });
+
+    it('should not contain duplicates', function() {
+        var testJade = 'div.grid.grid',
+            result = extract(testJade);
+        expect(result.length).to.equal(1);
+    });
 });
