@@ -1,6 +1,6 @@
 {
   "name": "symdiff-jade",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Extracts classes from a Jade template.",
   "main": "index.js",
   "repository": {
@@ -12,8 +12,8 @@
   },
   "homepage": "https://symdiff.github.io",
   "dependencies": {
-    "jade": "1.9.2",
-    "symdiff-html": "0.0.2"
+    "jade-lexer": "0.0.8",
+    "jade-parser": "0.0.8"
   },
   "devDependencies": {
     "chai": "2.3.0",
