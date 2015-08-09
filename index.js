@@ -27,10 +27,6 @@ function symdiffJade(jadeString) {
         classes = [];
 
     walk(ast, function(node) {
-        if (!node.attrs) {
-            return;
-        }
-        
         node.attrs.forEach(function(attr) {
             if (attr.name !== 'class') {
                 return;
