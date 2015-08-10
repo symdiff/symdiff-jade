@@ -2,12 +2,20 @@ var lex = require('jade-lexer'),
     parse = require('jade-parser');
 
 function walk(node, fn) {
-    fn(node);
-    if (node.nodes && node.nodes.forEach) {
-        node.nodes.forEach(function(child) {
-            walk(child, fn);
-        });
+    var children = [];
+
+    switch(node.type) {
+        case 'Tag':
+            fn(node);
+            children = node.block.nodes;
+            break;
+        case 'Block':
+            children = node.nodes;
     }
+
+    children.forEach(function(child) {
+        walk(child, fn);
+    });
 }
 
 function dedup(c, i, array) {
@@ -19,10 +27,6 @@ function symdiffJade(jadeString) {
         classes = [];
 
     walk(ast, function(node) {
-        if (!node.attrs) {
-            return;
-        }
-        
         node.attrs.forEach(function(attr) {
             if (attr.name !== 'class') {
                 return;

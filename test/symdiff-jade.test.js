@@ -1,4 +1,12 @@
-var extract = require('../index');
+var extract      = require('../index'),
+    readFileSync = require('fs').readFileSync,
+    join         = require('path').join,
+    resolve      = require('path').resolve;
+
+function readFixture(filename) {
+    var path = resolve(join(__dirname, filename));
+    return readFileSync(path).toString();
+}
 
 describe('symdiff-jade', function() {
     it('should work with empty jade', function() {
@@ -7,16 +15,16 @@ describe('symdiff-jade', function() {
     });
 
     it('should extract a class', function() {
-        var testJade = 'div.grid',
-            result = extract(testJade);
+        var fixture = readFixture('fixtures/single_class.jade'),
+            result = extract(fixture);
 
         expect(result.length).to.equal(1);
         expect(result[0]).to.equal('grid');
     });
 
     it('should extract multiple classes', function() {
-        var testJade = 'div.grid.grid-col',
-            result = extract(testJade);
+        var fixture = readFixture('fixtures/multiple_classes.jade'),
+            result = extract(fixture);
 
         expect(result.length).to.equal(2);
         expect(result[0]).to.equal('grid');
@@ -24,15 +32,17 @@ describe('symdiff-jade', function() {
     });
 
     it('should extract nothing when there are no classes', function() {
-        var testJade = 'script(type="text/javascript")',
-            result = extract(testJade);
+        var fixture = readFixture('fixtures/no_classes.jade'),
+            result = extract(fixture);
 
         expect(result.length).to.equal(0);
     });
 
     it('should not contain duplicates', function() {
-        var testJade = 'div.grid.grid',
-            result = extract(testJade);
+        var fixture = readFixture('fixtures/duplicate_classes.jade'),
+            result = extract(fixture);
+
         expect(result.length).to.equal(1);
+        expect(result[0]).to.equal('grid-col');
     });
 });
