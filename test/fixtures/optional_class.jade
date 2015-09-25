@@ -1,0 +1,10 @@
+doctype html
+html
+    head
+        title Test Fixture
+    body
+        // ternary operator is supported
+        div.always(class=(Math.random() < 0.5 ? 'a-class' : 'b-class'))
+            a(href='#') Test
+        // this one doesn't do anything, but it's not supported
+        div(class=(Math.random() + 5))

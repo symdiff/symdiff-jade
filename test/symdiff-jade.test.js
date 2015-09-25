@@ -45,4 +45,15 @@ describe('symdiff-jade', function() {
         expect(result.length).to.equal(1);
         expect(result[0]).to.equal('grid-col');
     });
+
+    it('should pick up optional classes', function() {
+        var fixture = readFixture('fixtures/optional_class.jade'),
+            result = extract(fixture);
+        expect(result.length).to.equal(3);
+        expect(result[0]).to.equal('always');
+        expect(result[1]).to.equal('a-class');
+        expect(result[2]).to.equal('b-class');
+        expect(result._warnings).to.be.defined;
+        expect(result._warnings.length).to.equal(1);
+    });
 });
