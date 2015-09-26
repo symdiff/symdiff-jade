@@ -60,7 +60,7 @@ function symdiffJade(jadeString) {
         });
     });
     classes = classes.filter(dedup);
-    classes._warnings = warnings;
+    classes.warnings = warnings;
     return classes;
 }
 

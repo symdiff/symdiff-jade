@@ -53,7 +53,7 @@ describe('symdiff-jade', function() {
         expect(result[0]).to.equal('always');
         expect(result[1]).to.equal('a-class');
         expect(result[2]).to.equal('b-class');
-        expect(result._warnings).to.be.defined;
-        expect(result._warnings.length).to.equal(1);
+        expect(result.warnings).to.be.defined;
+        expect(result.warnings.length).to.equal(1);
     });
 });
